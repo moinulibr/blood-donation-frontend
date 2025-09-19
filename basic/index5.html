@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-red-600 text-white shadow-md fixed top-0 left-0 w-full z-50">
+        <div class="container mx-auto flex justify-between items-center px-6 py-3">
+            <h1 class="text-xl font-bold">BloodLife</h1>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-gray-200">Home</a>
+                <a href="#" class="hover:text-gray-200">Request Blood</a>
+                <a href="#" class="hover:text-gray-200">Be a Donor</a>
+                <a href="#" class="hover:text-gray-200">Contact</a>
+            </nav>
+            <a href="#login" class="bg-white text-red-600 px-4 py-1 rounded-full font-medium hover:bg-gray-100">
+                Login
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero / Slider -->
+    <section class="pt-16 bg-gradient-to-r from-red-600 to-red-500 text-white">
+        <div class="container mx-auto flex flex-col md:flex-row items-center px-6 py-10 gap-10">
+
+            <!-- Left: Image Slider -->
+            <div class="flex-1 relative">
+                <div class="relative overflow-hidden rounded-2xl shadow-lg">
+                    <!-- Slider Wrapper -->
+                    <div id="slider" class="flex transition-transform duration-700">
+                        <img src="https://images.unsplash.com/photo-1584515933487-779824d29309"
+                            class="w-full h-72 object-cover flex-shrink-0" alt="Blood Donation 1">
+                        <img src="https://images.unsplash.com/photo-1622453790541-1c2dd56c5a95"
+                            class="w-full h-72 object-cover flex-shrink-0" alt="Blood Donation 2">
+                        <img src="https://images.unsplash.com/photo-1600959907703-125ba98e5cbb"
+                            class="w-full h-72 object-cover flex-shrink-0" alt="Blood Donation 3">
+                        <img src="https://images.unsplash.com/photo-1629566413617-98cbe32b437a"
+                            class="w-full h-72 object-cover flex-shrink-0" alt="Blood Donation 4">
+                    </div>
+
+                    <!-- Controls -->
+                    <button onclick="prevSlide()"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 bg-red-600 bg-opacity-70 text-white px-3 py-2 rounded-full hover:bg-opacity-90">❮</button>
+                    <button onclick="nextSlide()"
+                        class="absolute right-3 top-1/2 -translate-y-1/2 bg-red-600 bg-opacity-70 text-white px-3 py-2 rounded-full hover:bg-opacity-90">❯</button>
+                </div>
+            </div>
+
+            <!-- Right: Instructions -->
+            <div class="flex-1">
+                <h2 class="text-3xl font-bold mb-4">Why Donate Blood?</h2>
+                <div class="bg-white rounded-xl shadow-md p-5 space-y-3 text-gray-700 text-sm h-72 overflow-y-auto">
+                    <p>✅ Every 2 seconds someone needs blood.</p>
+                    <p>✅ A single donation can save up to 3 lives.</p>
+                    <p>✅ Safe and quick process.</p>
+                    <p>✅ Blood cannot be manufactured — only donated.</p>
+                    <p>✅ Helps trauma, surgery, cancer & accident patients.</p>
+                    <p>✅ Donating improves your own health too.</p>
+                    <p>✅ Be someone’s real-life hero!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Request Form + Hotline -->
+    <section class="bg-white shadow-lg">
+        <div class="container mx-auto grid md:grid-cols-2 gap-6 px-6 py-12">
+
+            <!-- Request Form -->
+            <div>
+                <h3 class="text-2xl font-bold mb-4">Request For Blood</h3>
+                <form class="space-y-4">
+                    <input type="text" placeholder="Your Name"
+                        class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500">
+                    <input type="text" placeholder="Phone Number"
+                        class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500">
+
+                    <select class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500">
+                        <option value="">Select Blood Group</option>
+                        <option>A+</option>
+                        <option>A-</option>
+                        <option>B+</option>
+                        <option>B-</option>
+                        <option>AB+</option>
+                        <option>AB-</option>
+                        <option>O+</option>
+                        <option>O-</option>
+                    </select>
+
+                    <textarea placeholder="Hospital / Location"
+                        class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-500"></textarea>
+
+                    <button type="submit"
+                        class="w-full bg-red-600 text-white font-medium py-2 rounded-lg hover:bg-red-700">Submit
+                        Request</button>
+                </form>
+            </div>
+
+            <!-- Emergency Hotline (side by side) -->
+            <div
+                class="bg-red-50 rounded-2xl border border-red-200 flex flex-col items-center justify-center text-center p-8">
+                <h3 class="text-2xl font-bold text-red-600 mb-2">🚨 Emergency Hotline</h3>
+                <p class="text-gray-700 mb-4">Call us anytime for urgent blood requirements</p>
+                <p class="text-3xl font-bold text-red-700">+880 1234 567 890</p>
+                <button class="mt-4 bg-red-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-red-700">Call
+                    Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-6 mt-12">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
+            <p>© 2025 BloodLife. All Rights Reserved.</p>
+            <div class="space-x-4 mt-3 md:mt-0">
+                <a href="#" class="hover:text-white">Privacy</a>
+                <a href="#" class="hover:text-white">Terms</a>
+                <a href="#" class="hover:text-white">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Slider Script -->
+    <script>
+        const slider = document.getElementById('slider');
+        const slides = slider.children;
+        let index = 0;
+
+        function showSlide(i) {
+            index = (i + slides.length) % slides.length;
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        function nextSlide() {
+            showSlide(index + 1);
+        }
+
+        function prevSlide() {
+            showSlide(index - 1);
+        }
+
+        // Auto Play
+        setInterval(nextSlide, 4000);
+    </script>
+
+</body>
+
+</html>
