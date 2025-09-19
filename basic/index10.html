@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>BloodShare — Jibon Bachan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* CSS for the Hero Section's Background Gradient */
+        .hero-gradient {
+            background: linear-gradient(135deg, #a73737 0%, #7a2d2d 100%);
+            /* A warm, professional red gradient */
+        }
+
+        /* CSS for the Image Slider */
+        .image-slider-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-slider-track {
+            display: flex;
+            width: 400%;
+            /* 4 images */
+            transition: transform 1s ease-in-out;
+        }
+
+        .image-slider-item {
+            width: 25%;
+            height: 100%;
+            flex-shrink: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* CSS for the Text Ticker */
+        @keyframes ticker-slide {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(calc(-100% + 200px));
+                /* Adjust based on content height */
+            }
+        }
+
+        .text-ticker {
+            animation: ticker-slide 15s linear infinite;
+        }
+
+        /* Basic Card & Button Effects */
+        .card-shadow {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .card-shadow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-hover-effect {
+            transition: transform 0.2s;
+        }
+
+        .btn-hover-effect:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 antialiased">
+
+    <header class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-2xl">
+                    B</div>
+                <div>
+                    <div class="font-bold text-lg">BloodShare</div>
+                    <div class="text-xs text-slate-500 -mt-0.5">Jibon Bachan</div>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-6">
+                <a href="#availability" class="hover:text-red-600">Blood Stock</a>
+                <a href="#how-it-works" class="hover:text-red-600">Kivabe kaj kore</a>
+                <a href="#stories" class="hover:text-red-600">Golpo</a>
+                <button id="cta-donate"
+                    class="ml-4 bg-red-600 text-white px-4 py-2 rounded-lg shadow hover:bg-red-700 btn-hover-effect">Rokto
+                    Dan</button>
+                <a href="#"
+                    class="ml-2 border border-red-600 text-red-600 px-3 py-1 rounded-lg btn-hover-effect">Login</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="p-2 rounded-md hover:bg-slate-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-2">
+                <a href="#availability" class="block py-2">Blood Stock</a>
+                <a href="#how-it-works" class="block py-2">Kivabe kaj kore</a>
+                <a href="#stories" class="block py-2">Golpo</a>
+                <div class="pt-3">
+                    <button class="w-full bg-red-600 text-white px-4 py-2 rounded-md">Rokto Dan</button>
+                    <a href="#"
+                        class="mt-2 block text-center border border-red-600 text-red-600 px-3 py-1 rounded-lg">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-0 hero-gradient">
+            <div class="image-slider-container h-[400px] md:h-[600px]">
+                <div class="image-slider-track h-full" id="image-slider-track">
+                    <div class="image-slider-item"
+                        style="background-image: url('https://source.unsplash.com/1600x900/?blood-donor,donation,health');">
+                    </div>
+                    <div class="image-slider-item"
+                        style="background-image: url('https://source.unsplash.com/1600x900/?volunteer-work,community,hospital');">
+                    </div>
+                    <div class="image-slider-item"
+                        style="background-image: url('https://source.unsplash.com/1600x900/?nurse,patients,care');">
+                    </div>
+                    <div class="image-slider-item"
+                        style="background-image: url('https://source.unsplash.com/1600x900/?blood-test,medical-equipment,lab');">
+                    </div>
+                </div>
+                <div
+                    class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center p-4 text-white text-center">
+                    <h1 class="text-3xl md:text-5xl font-bold">Jibon Bachanor Jonno</h1>
+                    <p class="mt-2 md:mt-4 text-md md:text-xl">Apnar ek fota rokto-i ekta jibon er ashah.</p>
+                    <button id="open-request-form"
+                        class="mt-6 md:mt-8 bg-white text-red-600 font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition btn-hover-effect">Rokto
+                        Request Korun</button>
+                </div>
+            </div>
+
+            <div class="h-[400px] md:h-[600px] bg-white p-8 flex flex-col justify-center">
+                <h2 class="text-3xl font-bold text-slate-800 text-center mb-6">Rokto Daner Guidelines</h2>
+                <div class="relative h-64 md:h-96 overflow-hidden bg-red-50 p-6 rounded-xl">
+                    <div class="text-ticker space-y-8">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h3 class="font-semibold text-lg">বয়স ও ওজন</h3>
+                            <p class="text-sm text-slate-600 mt-1">আপনার বয়স ১৮-৬৫ এবং ওজন কমপক্ষে ৫০ কেজি হতে হবে।</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h3 class="font-semibold text-lg">শারীরিক অবস্থা</h3>
+                            <p class="text-sm text-slate-600 mt-1">সুস্থ শরীর, কোন জ্বর বা সংক্রামক রোগ থাকা চলবে না।
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h3 class="font-semibold text-lg">শেষ দানের সময়</h3>
+                            <p class="text-sm text-slate-600 mt-1">শেষবার রক্তদানের পর কমপক্ষে ৩ মাস বিরতি নিতে হবে।</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h3 class="font-semibold text-lg">খাদ্য গ্রহণ</h3>
+                            <p class="text-sm text-slate-600 mt-1">রক্তদানের আগে প্রচুর পানি পান করুন এবং হালকা খাবার
+                                খান।</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <h3 class="font-semibold text-lg">জরুরি যোগাযোগ</h3>
+                            <p class="text-sm text-slate-600 mt-1">যেকোনো জরুরি প্রয়োজনে আমাদের হটলাইনে যোগাযোগ করুন।
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="availability" class="max-w-4xl mx-auto px-4 py-12">
+            <h2 class="text-3xl font-bold text-center text-slate-800">Blood Stock Status</h2>
+            <div class="mt-8 overflow-x-auto bg-white rounded-xl shadow-md p-2 md:p-6">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="text-sm md:text-base text-slate-600 uppercase border-b border-gray-200">
+                            <th class="py-3 px-2 md:px-4 font-semibold">Blood Group</th>
+                            <th class="py-3 px-2 md:px-4 font-semibold text-center">Available Donors</th>
+                            <th class="py-3 px-2 md:px-4 font-semibold text-center">Requests (Units)</th>
+                            <th class="py-3 px-2 md:px-4 font-semibold text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-4 px-2 md:px-4 font-bold text-lg text-red-600">O+</td>
+                            <td class="py-4 px-2 md:px-4 text-center">15</td>
+                            <td class="py-4 px-2 md:px-4 text-center">3</td>
+                            <td class="py-4 px-2 md:px-4 text-center text-green-600 font-semibold">High</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-4 px-2 md:px-4 font-bold text-lg text-red-600">A+</td>
+                            <td class="py-4 px-2 md:px-4 text-center">10</td>
+                            <td class="py-4 px-2 md:px-4 text-center">5</td>
+                            <td class="py-4 px-2 md:px-4 text-center text-yellow-600 font-semibold">Medium</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-4 px-2 md:px-4 font-bold text-lg text-red-600">B+</td>
+                            <td class="py-4 px-2 md:px-4 text-center">8</td>
+                            <td class="py-4 px-2 md:px-4 text-center">6</td>
+                            <td class="py-4 px-2 md:px-4 text-center text-yellow-600 font-semibold">Medium</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-4 px-2 md:px-4 font-bold text-lg text-red-600">O-</td>
+                            <td class="py-4 px-2 md:px-4 text-center">2</td>
+                            <td class="py-4 px-2 md:px-4 text-center">8</td>
+                            <td class="py-4 px-2 md:px-4 text-center text-red-600 font-semibold">Low</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-2 md:px-4 font-bold text-lg text-red-600">AB-</td>
+                            <td class="py-4 px-2 md:px-4 text-center">1</td>
+                            <td class="py-4 px-2 md:px-4 text-center">4</td>
+                            <td class="py-4 px-2 md:px-4 text-center text-red-600 font-semibold">Very Low</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="max-w-7xl mx-auto px-4 py-12">
+            <h2 class="text-3xl font-bold text-center text-slate-800">Kivabe Kaj Kore?</h2>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-md p-6 text-center card-shadow">
+                    <div
+                        class="w-16 h-16 mx-auto bg-red-100 text-red-600 rounded-full flex items-center justify-center text-3xl mb-4">
+                        1</div>
+                    <h3 class="font-semibold text-lg">Request or Register</h3>
+                    <p class="text-sm text-slate-600 mt-1">Apni rokto request korte paren ba donor hishebe register
+                        korte paren.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 text-center card-shadow">
+                    <div
+                        class="w-16 h-16 mx-auto bg-red-100 text-red-600 rounded-full flex items-center justify-center text-3xl mb-4">
+                        2</div>
+                    <h3 class="font-semibold text-lg">Automated Notification</h3>
+                    <p class="text-sm text-slate-600 mt-1">Amader system nearby hospital ebong donor-der instantly
+                        inform korbe.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 text-center card-shadow">
+                    <div
+                        class="w-16 h-16 mx-auto bg-red-100 text-red-600 rounded-full flex items-center justify-center text-3xl mb-4">
+                        3</div>
+                    <h3 class="font-semibold text-lg">Jibon Bachan</h3>
+                    <p class="text-sm text-slate-600 mt-1">Samay moto rokto daner maddhome jibon bachano hobe.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="stories" class="max-w-7xl mx-auto px-4 py-12">
+            <h2 class="text-3xl font-bold text-center text-slate-800">Community er Golpo</h2>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-md p-6 card-shadow">
+                    <p class="text-sm text-slate-700">"Amake jodi roktoda na dewa hoto, tahole ami beche thakte partam
+                        na. BloodShare ke onek dhonnobad!"</p>
+                    <div class="mt-4 flex items-center gap-3">
+                        <img src="https://i.pravatar.cc/40?img=1" alt="Rina Akter" class="rounded-full">
+                        <span class="text-xs text-slate-500 font-semibold">Rina Akter, Patient</span>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 card-shadow">
+                    <p class="text-sm text-slate-700">"Ami jokhon ekta roktoda di, tokhon amar mone hoy ami ekta jibon
+                        bachalam. Ei onuvuti ta onnek shanto."</p>
+                    <div class="mt-4 flex items-center gap-3">
+                        <img src="https://i.pravatar.cc/40?img=2" alt="Karim Hasan" class="rounded-full">
+                        <span class="text-xs text-slate-500 font-semibold">Karim Hasan, Donor</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-slate-900 text-slate-300">
+            <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="text-white font-bold text-lg">BloodShare</div>
+                    <p class="text-sm mt-2 text-slate-400">Rokto dan korun, jibon bachai. Shomajer angsho hon.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white">Quick Links</h5>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><a href="#availability" class="hover:text-red-400">Blood Stock</a></li>
+                        <li><a href="#how-it-works" class="hover:text-red-400">Kivabe kaj kore</a></li>
+                        <li><a href="#stories" class="hover:text-red-400">Golpo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white">Joga-jog</h5>
+                    <div class="mt-3 text-sm text-slate-300">
+                        <div class="font-medium text-red-400">Hotline: +880 1234 567 890</div>
+                        <div class="mt-1">Email: support@bloodshare.org</div>
+                        <div class="mt-2 flex gap-3">
+                            <a href="#" aria-label="facebook" class="hover:text-white">Facebook</a>
+                            <a href="#" aria-label="twitter" class="hover:text-white">Twitter</a>
+                            <a href="#" aria-label="instagram" class="hover:text-white">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-xs text-slate-500 py-4 border-t border-slate-700">© 2025 BloodShare. Shob
+                odhikar shongrokhito.</div>
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Image Slider Logic
+        const sliderTrack = document.getElementById('image-slider-track');
+        let currentIndex = 0;
+        const totalImages = 4;
+
+        function slideImages() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            sliderTrack.style.transform = `translateX(-${currentIndex * 25}%)`;
+        }
+
+        setInterval(slideImages, 5000); // Change image every 5 seconds
+    </script>
+</body>
+
+</html>
