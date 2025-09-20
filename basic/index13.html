@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>BloodShare — Jibon Bachan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for Hero Section */
+        .hero-video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* Full viewport height */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            background-size: cover;
+            filter: brightness(0.7);
+            /* Darken the video/image for text readability */
+        }
+
+        /* Call to Action Button styling */
+        .cta-button {
+            background-color: #ef4444;
+            /* Red */
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            /* Fully rounded */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background-color: #dc2626;
+            /* Darker red */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Animated Stats */
+        .stat-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Timeline for How It Works section */
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            width: 8px;
+            height: 8px;
+            background-color: #ef4444;
+            /* Red dot */
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 0.8rem;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: #fca5a5;
+            /* Light red line */
+        }
+
+        .timeline-item:last-child::after {
+            height: calc(100% - 1rem);
+            /* Adjust last line length */
+        }
+
+        @media (min-width: 768px) {
+            .timeline-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .timeline-item:nth-child(even) {
+                text-align: right;
+                padding-left: 0;
+                padding-right: 3rem;
+            }
+
+            .timeline-item:nth-child(even)::before {
+                left: auto;
+                right: 0.5rem;
+            }
+
+            .timeline-item:nth-child(even)::after {
+                left: auto;
+                right: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-slate-800 antialiased">
+
+    <header class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-2xl">
+                    B</div>
+                <div>
+                    <div class="font-bold text-lg">BloodShare</div>
+                    <div class="text-xs text-slate-500 -mt-0.5">Jibon Bachan</div>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-6">
+                <a href="#about" class="hover:text-red-600">Amader somporke</a>
+                <a href="#stats" class="hover:text-red-600">Statistics</a>
+                <a href="#how-it-works" class="hover:text-red-600">Kivabe kaj kore</a>
+                <button class="ml-4 bg-red-600 text-white px-4 py-2 rounded-lg shadow hover:bg-red-700 cta-button">Rokto
+                    Dan</button>
+                <a href="#" class="ml-2 border border-red-600 text-red-600 px-3 py-1 rounded-lg">Login</a>
+            </nav>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="p-2 rounded-md hover:bg-slate-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-2">
+                <a href="#about" class="block py-2">Amader somporke</a>
+                <a href="#stats" class="block py-2">Statistics</a>
+                <a href="#how-it-works" class="block py-2">Kivabe kaj kore</a>
+                <div class="pt-3">
+                    <button class="w-full bg-red-600 text-white px-4 py-2 rounded-md">Rokto Dan</button>
+                    <a href="#"
+                        class="mt-2 block text-center border border-red-600 text-red-600 px-3 py-1 rounded-lg">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-video-container">
+            <video autoplay muted loop class="hero-video hidden lg:block">
+                <source
+                    src="https://assets.mixkit.co/videos/preview/mixkit-nurse-placing-a-needle-in-a-patient's-arm-4217-large.mp4"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <img src="https://source.unsplash.com/1600x900/?blood-donation,saving-life" alt="Blood Donation"
+                class="hero-video lg:hidden">
+
+            <div class="relative z-10 p-4 max-w-2xl">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight drop-shadow-lg">Ek Fota Rokto, Ekta
+                    Notun Jibon.</h1>
+                <p class="mt-4 text-lg sm:text-xl md:text-2xl font-light drop-shadow-md">Ekhon-i Rokto Dan Kore Somaje
+                    Ekta Poriborton Aanun.</p>
+                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="cta-button">Rokto Request Korun</button>
+                    <button
+                        class="bg-transparent border border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white hover:text-red-600 transition cta-button">Donor
+                        Hote Chai</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="max-w-7xl mx-auto px-4 py-16">
+            <h2 class="text-4xl font-bold text-center text-slate-800">Amader Prochesta</h2>
+            <p class="text-center text-slate-600 mt-4 max-w-3xl mx-auto">BloodShare holo ekta digital platform, jekhane
+                rokto dorkar porle taratari khuje pawa jay. Amra roktodani ebong roktogrohitader majhe ekta shetu
+                bondhon toiri kori.</p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center stat-card">
+                    <div class="text-5xl text-red-600 mb-4">❤️</div>
+                    <h3 class="font-bold text-2xl mb-2">Jibon Bachano</h3>
+                    <p class="text-slate-600">Amra protidin ashohay manusher jibon bachate sahajjo kori, apnar daner
+                        maddhome.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center stat-card">
+                    <div class="text-5xl text-red-600 mb-4">🌐</div>
+                    <h3 class="font-bold text-2xl mb-2">Shobai Kache</h3>
+                    <p class="text-slate-600">Amader network shob hospital ebong roktodanider majhe choriye ache.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center stat-card">
+                    <div class="text-5xl text-red-600 mb-4">🔒</div>
+                    <h3 class="font-bold text-2xl mb-2">Nirapod Ebong Shofol</h3>
+                    <p class="text-slate-600">Amra nirapotta ebong promanikota niye kono compromise kori na.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats" class="bg-red-700 text-white py-16">
+            <div class="max-w-7xl mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center">Tothya Ebong Proyojoniyota</h2>
+                <p class="text-center text-red-100 mt-4 max-w-3xl mx-auto">Dekhun, kon blood group er koto donor ache
+                    ebong koto unit rokto dorkar.</p>
+
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center text-slate-800 stat-card">
+                        <div class="text-sm font-semibold text-red-500 uppercase">Available Donors</div>
+                        <div class="text-5xl font-bold text-red-700 mt-2">1,200+</div>
+                        <p class="text-sm text-slate-600">Registered Donors Globally</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center text-slate-800 stat-card">
+                        <div class="text-sm font-semibold text-red-500 uppercase">Lives Saved</div>
+                        <div class="text-5xl font-bold text-red-700 mt-2">50,000+</div>
+                        <p class="text-sm text-slate-600">Through our platform</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center text-slate-800 stat-card">
+                        <div class="text-sm font-semibold text-red-500 uppercase">Emergency Requests</div>
+                        <div class="text-5xl font-bold text-red-700 mt-2">250+</div>
+                        <p class="text-sm text-slate-600">Fulfilled last month</p>
+                    </div>
+                </div>
+
+                <div class="mt-16 bg-red-800 p-8 rounded-xl shadow-xl">
+                    <h3 class="text-3xl font-bold text-center mb-6">Blood Stock Status</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="text-sm uppercase text-red-100 border-b border-red-600">
+                                    <th class="py-3 px-4 font-semibold">Blood Group</th>
+                                    <th class="py-3 px-4 text-center font-semibold">Available Donors</th>
+                                    <th class="py-3 px-4 text-center font-semibold">Requests (Units)</th>
+                                    <th class="py-3 px-4 text-center font-semibold">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-red-700 last:border-b-0">
+                                    <td class="py-3 px-4 font-bold text-xl">O+</td>
+                                    <td class="py-3 px-4 text-center">150</td>
+                                    <td class="py-3 px-4 text-center">10</td>
+                                    <td class="py-3 px-4 text-center text-green-300 font-semibold">High</td>
+                                </tr>
+                                <tr class="border-b border-red-700 last:border-b-0">
+                                    <td class="py-3 px-4 font-bold text-xl">A+</td>
+                                    <td class="py-3 px-4 text-center">120</td>
+                                    <td class="py-3 px-4 text-center">15</td>
+                                    <td class="py-3 px-4 text-center text-green-300 font-semibold">High</td>
+                                </tr>
+                                <tr class="border-b border-red-700 last:border-b-0">
+                                    <td class="py-3 px-4 font-bold text-xl">B+</td>
+                                    <td class="py-3 px-4 text-center">80</td>
+                                    <td class="py-3 px-4 text-center">20</td>
+                                    <td class="py-3 px-4 text-center text-yellow-300 font-semibold">Medium</td>
+                                </tr>
+                                <tr class="border-b border-red-700 last:border-b-0">
+                                    <td class="py-3 px-4 font-bold text-xl">O-</td>
+                                    <td class="py-3 px-4 text-center">15</td>
+                                    <td class="py-3 px-4 text-center">12</td>
+                                    <td class="py-3 px-4 text-center text-red-300 font-semibold">Low</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-bold text-xl">AB-</td>
+                                    <td class="py-3 px-4 text-center">5</td>
+                                    <td class="py-3 px-4 text-center">8</td>
+                                    <td class="py-3 px-4 text-center text-red-300 font-semibold">Very Low</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="max-w-4xl mx-auto px-4 py-16">
+            <h2 class="text-4xl font-bold text-center text-slate-800">Kivabe Rokto Dan Korben?</h2>
+            <p class="text-center text-slate-600 mt-4 max-w-2xl mx-auto">Amader shojho 3-step proccess follow korun
+                ebong jibon bachate sahajjo korun.</p>
+
+            <div class="mt-12 timeline-container">
+                <div class="timeline-item">
+                    <h3 class="font-bold text-xl text-red-600 mb-2">1. Register Korun</h3>
+                    <p class="text-slate-700">Amader platform-e ekta account khulun ebong apnar roktodani hishebe
+                        register korun.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 class="font-bold text-xl text-red-600 mb-2">2. Appointment Theek Korun</h3>
+                    <p class="text-slate-700">Apnar kacher blood donation center e appointment theek korun.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3 class="font-bold text-xl text-red-600 mb-2">3. Rokto Dan Korun</h3>
+                    <p class="text-slate-700">Appointment moto center e giye rokto dan korun. Prochesta-ti shompurno.
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <h3 class="font-bold text-xl text-red-600 mb-2">4. Shongjog Rakhun</h3>
+                    <p class="text-slate-700">Apnar rokto diye kar jibon becheche, ta jante parben.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-slate-900 text-slate-300">
+            <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="text-white font-bold text-lg">BloodShare</div>
+                    <p class="text-sm mt-2 text-slate-400">Rokto dan korun, jibon bachai. Shomajer angsho hon.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white">Quick Links</h5>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-red-400">Amader somporke</a></li>
+                        <li><a href="#stats" class="hover:text-red-400">Statistics</a></li>
+                        <li><a href="#how-it-works" class="hover:text-red-400">Kivabe kaj kore</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-white">Joga-jog</h5>
+                    <div class="mt-3 text-sm text-slate-300">
+                        <div class="font-medium text-red-400">Hotline: +880 1234 567 890</div>
+                        <div class="mt-1">Email: support@bloodshare.org</div>
+                        <div class="mt-2 flex gap-3">
+                            <a href="#" aria-label="facebook" class="hover:text-white">Facebook</a>
+                            <a href="#" aria-label="twitter" class="hover:text-white">Twitter</a>
+                            <a href="#" aria-label="instagram" class="hover:text-white">Instagram</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-xs text-slate-500 py-4 border-t border-slate-700">© 2025 BloodShare. Shob
+                odhikar shongrokhito.</div>
+        </footer>
+    </main>
+
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>
